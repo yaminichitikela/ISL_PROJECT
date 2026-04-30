@@ -1,0 +1,8 @@
+include_videos/
+RpLAN/
+*.zip
+*.MOV
+*.task
+.DS_Store
+__pycache__/
+*.pyc
