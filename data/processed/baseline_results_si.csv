@@ -1,0 +1,3 @@
+Method,Modality,Protocol,Top-1,Macro F1,Source
+BiLSTM on skeleton (ours),Skeleton,SI-proxy (5-fold),49.1% ± 5.5%,0.453 ± 0.048,"PROVISIONAL — proxy signer IDs, not real cross-signer split"
+1D-CNN on skeleton (ours),Skeleton,SI-proxy (5-fold),77.0% ± 5.1%,0.748 ± 0.050,"PROVISIONAL — proxy signer IDs, not real cross-signer split"

@@ -6,3 +6,16 @@ RpLAN/
 .DS_Store
 __pycache__/
 *.pyc
+
+# Large binary data — share via Google Drive / link, not git
+data/raw_keypoints/
+data/processed/*.npy
+data/processed/*.pkl
+data/processed/*.pt
+include_dataset/
+checkpoints/*.pt
+
+# LaTeX build artifacts
+*.aux
+*.log
+missfont.log

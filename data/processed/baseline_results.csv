@@ -1,0 +1,7 @@
+Method,Modality,Protocol,Top-1,Macro F1,Source
+XGBoost (Sridhar et al. 2020),Skeleton,SD,63.1%,—,INCLUDE paper; skeleton joint angles
+MobileNetV2+BiLSTM (Sridhar et al. 2020),RGB video,SD,85.6%,—,INCLUDE paper; NOT comparable to skeleton models
+ST-GCN (Song et al. 2025),Skeleton,SD,99.02%,—,HA-GCN paper Table 2; INCLUDE dataset
+HA-GCN multi-stream (Song et al. 2025),Skeleton,SD,99.63%,—,HA-GCN paper Table 2; INCLUDE dataset; SI not reported
+BiLSTM on skeleton (ours),Skeleton,SD,63.0%,0.605,"53-joint MediaPipe, T=64, hidden=256"
+1D-CNN on skeleton (ours),Skeleton,SD,90.9%,0.907,"53-joint MediaPipe, T=64, 3×Conv1D"
