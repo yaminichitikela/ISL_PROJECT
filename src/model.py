@@ -200,6 +200,7 @@ class STGCN(nn.Module):
         in_channels: int = 3,
         dropout: float = 0.5,
         adaptive: bool = False,
+        channels: tuple = (64, 128, 256),
     ):
         super().__init__()
 
@@ -212,16 +213,20 @@ class STGCN(nn.Module):
         self.data_bn = nn.BatchNorm1d(in_channels * V)
 
         # 9 ST-GCN blocks — (out_channels, temporal_stride)
+        # `channels` sets the three stage widths; default (64,128,256) is
+        # exactly the original fixed architecture used for every other
+        # result in this project.
+        c1, c2, c3 = channels
         _cfg = [
-            (64,  1),   # block 1
-            (64,  1),   # block 2
-            (64,  1),   # block 3
-            (64,  1),   # block 4
-            (128, 2),   # block 5 — T ÷ 2
-            (128, 1),   # block 6
-            (128, 1),   # block 7
-            (256, 2),   # block 8 — T ÷ 4
-            (256, 1),   # block 9
+            (c1,  1),   # block 1
+            (c1,  1),   # block 2
+            (c1,  1),   # block 3
+            (c1,  1),   # block 4
+            (c2, 2),   # block 5 — T ÷ 2
+            (c2, 1),   # block 6
+            (c2, 1),   # block 7
+            (c3, 2),   # block 8 — T ÷ 4
+            (c3, 1),   # block 9
         ]
 
         blocks = []
@@ -240,7 +245,7 @@ class STGCN(nn.Module):
 
         self.blocks = nn.ModuleList(blocks)
         self.drop   = nn.Dropout(dropout)
-        self.fc     = nn.Linear(256, n_classes)
+        self.fc     = nn.Linear(c3, n_classes)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
